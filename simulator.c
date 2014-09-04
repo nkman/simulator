@@ -2,6 +2,7 @@
 
 int main(){
 	get_detail_from_file();
-	print_process();
+	// print_process();
+	FCFS();
 	return 0;
 }

@@ -7,6 +7,8 @@
 void get_detail_from_file(void);
 void split(char *, char);
 static void print_process(void);
+void FCFS(void);
+
 /*
 * Read from file.
 */
@@ -29,39 +31,6 @@ void get_detail_from_file(){
 /*
 * split and save in process.
 */
-
-/*
-void split(char *line, char tab){
-	char temp[43];
-	// memset(temp, 43, 0);
-	int i, j=0, k=0;
-	for(i=0;i<strlen(line);i++){
-		if(temp[k] == tab || temp[k] == '\n'){
-			switch(j){
-				case 1:
-							strcpy(process[total_process].name, temp);
-							break;
-				case 2:
-							process[total_process].arrival_time = atof(temp);
-							break;
-				case 3:
-							process[total_process].burst_time = atof(temp);
-							break;
-				default:
-							break;
-			}
-			memset(temp, 43, 0);
-			total_process++;
-			j++;
-			k=0;
-		}
-		printf("%s length %lu\n", temp, strlen(temp));
-		temp[strlen(temp)] = line[k];
-		k++;
-	}
-}
-*/
-
 void split(char *line, char tab){
 	char delim[2];
 	delim[0] = tab;
@@ -72,6 +41,7 @@ void split(char *line, char tab){
 	process[total_process].arrival_time = atof(line);
 	line = strtok(NULL, delim);
 	process[total_process].burst_time = atof(line);
+	memset(process[total_process].is_completed, 2, 0);
 	total_process++;
 	return;
 }
@@ -81,6 +51,36 @@ static void print_process(){
 	for(i=0;i<total_process;i++){
 		printf("%f\t%f\n", process[i].arrival_time, process[i].burst_time);
 	}
+}
+
+/*
+* First Come First Serve Algo.
+*/
+void FCFS(){
+	printf("First Come First Serve scheduling started...\n");
+	int i=0;
+	float elapsed_time = 0.0, waiting_time = 0.0, turnaround_time = 0.0;
+	while(i<total_process){
+		elapsed_time += process[i].burst_time;
+		process[i].termination_time[0] = elapsed_time;
+		process[i].is_completed[0] = 1;
+		process[i].turnaround_time[0] = process[i].termination_time[0] - process[i].arrival_time;
+		if(elapsed_time - process[i].arrival_time > 0)
+			process[i].waiting_time[0] = elapsed_time - process[i].arrival_time;
+		else
+			process[i].waiting_time[0] = 0;
+
+		waiting_time += process[i].waiting_time[0];
+		waiting_time -= process[i].burst_time;
+
+		turnaround_time += process[i].turnaround_time[0];
+		turnaround_time -= process[i].burst_time;
+		printf("Process %s completed in %f and ended at %f.\n", process[i].name, process[i].burst_time, elapsed_time);
+		i++;
+	}
+	waiting_time /= total_process;
+	turnaround_time /= total_process;
+	printf("Avg turnaround_time is %f and avg waiting_time is %f\n", turnaround_time, waiting_time);
 }
 
 #endif /* _HEADER_FUNCTION_H */

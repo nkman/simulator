@@ -7,12 +7,16 @@
 /*
 * Process Decriptor.
 * name - process name [i.e. P1] max 50 characters.
+* 0 - FCFS, 1 - SJF, 2 - RR.
 */
 struct incoming_process{
 	char name[50];
 	float arrival_time;
 	float burst_time;
-	float termination_time;
+	int is_completed[3];
+	float termination_time[3];
+	float waiting_time[3];
+	float turnaround_time[3];
 };
 typedef struct incoming_process Process;
 
