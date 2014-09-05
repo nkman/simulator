@@ -8,6 +8,8 @@ void get_detail_from_file(void);
 void split(char *, char);
 static void print_process(void);
 void FCFS(void);
+void SJF(void);
+int shortest_process(int, float);
 
 /*
 * Read from file.
@@ -70,17 +72,59 @@ void FCFS(){
 		else
 			process[i].waiting_time[0] = 0;
 
-		waiting_time += process[i].waiting_time[0];
-		waiting_time -= process[i].burst_time;
+		waiting_time += process[i].waiting_time[0] - process[i].burst_time;
+		// waiting_time -= process[i].burst_time;
 
-		turnaround_time += process[i].turnaround_time[0];
-		turnaround_time -= process[i].burst_time;
+		turnaround_time += process[i].turnaround_time[0] - process[i].burst_time;
+		// turnaround_time -= process[i].burst_time;
 		printf("Process %s completed in %f and ended at %f.\n", process[i].name, process[i].burst_time, elapsed_time);
 		i++;
 	}
 	waiting_time /= total_process;
 	turnaround_time /= total_process;
 	printf("Avg turnaround_time is %f and avg waiting_time is %f\n", turnaround_time, waiting_time);
+}
+
+/*
+* Sortest Job First
+*/
+void SJF(){
+	printf("Non-Preemptive SJF...\n");
+	float curr_time, total_burst_time=0;
+	float elapsed_time = 0.0, waiting_time = 0.0, turnaround_time = 0.0;
+	int i, smallest;
+	for(i=0; i<total_process; i++)
+		total_burst_time += process[i].burst_time;
+
+	/*
+	* Start with last process.
+	*/
+	smallest = total_process-1;
+
+	for(curr_time=0; curr_time<total_burst_time;){
+		for(i=0; i<total_process; i++){
+			if(process[i].arrival_time < curr_time && process[i].burst_time > 0 && process[i].is_completed == 0 && process[i].burst_time < process[smallest].burst_time)
+				smallest = i;
+		}
+
+
+	}
+	/*
+	int current_process, total_processes = total_process;
+	while(total_processes--){
+		current_process = shortest_process(current_process, 0.0);
+
+	}
+	*/
+}
+
+int shortest_process(int t, float at_time){
+	int i;
+	for(i=0;i<total_process-1;i++){
+		if(process[i].burst_time < process[i+1].burst_time && process[i].is_completed[1] == 0 && process[i].arrival_time <= at_time)
+			t = i;
+	}
+	return t;
 }
 
 #endif /* _HEADER_FUNCTION_H */

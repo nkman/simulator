@@ -4,5 +4,6 @@ int main(){
 	get_detail_from_file();
 	// print_process();
 	FCFS();
+	SJF();
 	return 0;
 }
