@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include </home/nkman/Desktop/Work/simulator/header/variable.h>
-#include </home/nkman/Desktop/Work/simulator/header/function.h>
+
+#include "variable.h"
+#include "function.h"
 
 #endif /* _HEADER_HEADERS_H */
