@@ -44,4 +44,13 @@ static unsigned int total_process = 0;
 */
 #define file "process.txt"
 
+/*
+* structure used in sjf non-preemptive
+* to send multiple arguments.
+*/
+struct _data_{
+	int smallest;
+	float curr_time;
+};
+typedef struct _data_ data_sjf_non_preemptive;
 #endif /* _HEADER_VARIABLE_H */
