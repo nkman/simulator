@@ -7,16 +7,17 @@
 /*
 * Process Decriptor.
 * name - process name [i.e. P1] max 50 characters.
-* 0 - FCFS, 1 - SJF, 2 - RR.
+* 0 - FCFS, 1 - SJF_NON_PREEMPTIVE, 2 - SJF_PREEMPTIVE, 3 - PRIORITY, 4 - RR.
 */
 struct incoming_process{
 	char name[50];
 	float arrival_time;
 	float burst_time;
-	int is_completed[3];
-	float termination_time[3];
-	float waiting_time[3];
-	float turnaround_time[3];
+	int priority;
+	int is_completed[5];
+	float termination_time[5];
+	float waiting_time[5];
+	float turnaround_time[5];
 };
 typedef struct incoming_process Process;
 
@@ -32,6 +33,10 @@ static Process process[500];
 */
 static unsigned int is_preemptive = NO_PREEMPTIVE;
 
+/*
+* 1 if priority
+*/
+static unsigned int is_priority = 0;
 /*
 * total number of process to consider.
 * Zero initially.
@@ -53,4 +58,7 @@ struct _data_{
 	float curr_time;
 };
 typedef struct _data_ data_sjf_non_preemptive;
+
+/*Same for priority datas*/
+typedef data_sjf_non_preemptive data_priority_non_preemptive;
 #endif /* _HEADER_VARIABLE_H */
