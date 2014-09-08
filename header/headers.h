@@ -7,6 +7,7 @@
 #include <pthread.h>
 
 #include "variable.h"
+#include "sort.h"
 #include "function.h"
 
 #include "fcfs.h"
