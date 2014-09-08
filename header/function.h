@@ -51,7 +51,9 @@ void split(char *line, char tab){
 	/* line = priority. */
 	process[total_process].priority = atoi(line);
 
-	memset(process[total_process].is_completed, 2, 0);
+	memset(process[total_process].is_completed, 5, 0);
+	memset(process[total_process].state, 5, 0);
+	
 	total_process++;
 	return;
 }

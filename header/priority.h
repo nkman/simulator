@@ -32,6 +32,8 @@ void priority_scheduling(){
 		next = priority_order(curr_time);
 		process[next].is_completed[3] = 1;
 
+		/*ready*/
+		process[i].state[3] = 1;
 		data[i].smallest = next;
 		data[i].curr_time = curr_time;
 
@@ -93,6 +95,7 @@ void *priority_scheduling_func(void *data){
 	int smallest;
 	float curr_time, elapsed_time = 0.0, waiting_time = 0.0, turnaround_time = 0.0;
 
+	process[smallest].state[3] = 2;
 	smallest = (*_data).smallest;
 	curr_time = (*_data).curr_time;
 
@@ -105,6 +108,7 @@ void *priority_scheduling_func(void *data){
 	process[smallest].termination_time[3] = curr_time;
 	process[smallest].is_completed[3] = 1;
 	printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[3], process[smallest].waiting_time[3]);
+	process[smallest].state[3] = 4;
 }
 
 #endif /* _HEADER_PRIORITY_H */

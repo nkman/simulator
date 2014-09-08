@@ -32,6 +32,7 @@ void SJF(){
 		smallest = shortest_process(curr_time);
 		process[smallest].is_completed[1] = 1;
 
+		process[smallest].state[1] = 1;
 		data[i].smallest = smallest;
 		data[i].curr_time = curr_time;
 
@@ -70,6 +71,7 @@ void *sjf_non_parts(void *data){
 	int smallest;
 	float curr_time, elapsed_time = 0.0, waiting_time = 0.0, turnaround_time = 0.0;
 
+	process[smallest].state[1] = 2;
 	smallest = (*_data).smallest;
 	curr_time = (*_data).curr_time;
 
@@ -82,7 +84,7 @@ void *sjf_non_parts(void *data){
 	process[smallest].termination_time[1] = curr_time;
 	process[smallest].is_completed[1] = 1;
 	printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[1], process[smallest].waiting_time[1]);
-	
+	process[smallest].state[1] = 4;
 }
 
 int shortest_process(float curr_time){

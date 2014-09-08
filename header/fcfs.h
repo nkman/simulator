@@ -28,6 +28,9 @@ void FCFS(){
 		data[i].smallest = i;
 		data[i].curr_time = curr_time;
 
+		/*ready*/
+		process[i].state[0] = 1;
+
 		thread_con[i] = pthread_create(&thread[i], NULL, &(fcfs_thread), &data[i]);
 		if(thread_con[i]){
 			fprintf(stderr, "Error - pthread_create() return code: %d\n", thread_con[i]);
@@ -56,15 +59,20 @@ void *fcfs_thread(void *data){
 
 	i = (*_data).smallest;
 	curr_time = (*_data).curr_time;
+	/*running*/
+	process[i].state[0] = 2;
 
 	if(curr_time - process[i].arrival_time > 0){
 		process[i].waiting_time[0] = curr_time - process[i].arrival_time;
 	}
 	curr_time += process[i].burst_time;
 	process[i].is_completed[0] = 1;
-	
+
 	process[i].termination_time[0] = curr_time;
 	printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[i].name, process[i].burst_time, process[i].termination_time[0], process[i].waiting_time[0]);
+
+	/*terminated*/
+	process[i].state[0] = 4;
 }
 
 #endif /* _HEADER_FCFS_H */

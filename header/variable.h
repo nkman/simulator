@@ -4,6 +4,12 @@
 #define PREEMPTIVE 1
 #define NO_PREEMPTIVE 0
 
+#define new 0
+#define ready 1
+#define running 2
+#define waiting 3
+#define terminated 4
+
 /*
 * Process Decriptor.
 * name - process name [i.e. P1] max 50 characters.
@@ -15,6 +21,7 @@ struct incoming_process{
 	float arrival_time;
 	float burst_time;
 	int priority;
+	int state[5];
 	int is_completed[5];
 	float termination_time[5];
 	float waiting_time[5];
