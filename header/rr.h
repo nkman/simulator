@@ -6,7 +6,7 @@ void *rr_thread(void *);
 static float current_time_rr=0.0;
 void rr(){
 	printf("RR started...\n");
-	float total_burst_time, waiting_time = 0.0, turnaround_time = 0.0;
+	float total_burst_time= 0.0, waiting_time = 0.0, turnaround_time = 0.0;
 	int i, curr_index, j=0;
 
 	for(i=0; i<total_process; i++){
@@ -27,7 +27,6 @@ void rr(){
 
 
 	for(current_time_rr=0; current_time_rr < total_burst_time;){
-		
 		data[curr_index].smallest = curr_index;
 		data[curr_index].curr_time = current_time_rr;
 
@@ -46,9 +45,7 @@ void rr(){
 				break;
 			i++;
 		}
-		// printf("current_time_rr :%f\n", current_time_rr);
 		current_time_rr += quantum;
-		// j++;
 	}
 
 	
@@ -64,16 +61,12 @@ void rr(){
 
 static int k = 0;
 void *rr_thread(void *data){
-	// printf("k: %d\n", k++);
 	int i, curr_index;
-	// float current_time_rr;
 	data_sjf_non_preemptive *_data = (struct _data_ *)data;
 
 	curr_index = (*_data).smallest;
-	// current_time_rr = (*_data).current_time_rr;
 
 	if(process[curr_index].remaining_time <= quantum){
-		if(process[curr_index].remaining_time ==0)return ;
 		current_time_rr -= quantum;
 		current_time_rr += process[curr_index].remaining_time;
 		process[curr_index].remaining_time = 0;

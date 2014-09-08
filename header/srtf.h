@@ -85,7 +85,7 @@ void *srtf_thread(void *data){
 		process[curr_index].waiting_time[2] = process[curr_index].turnaround_time[2] - process[curr_index].burst_time;
 		process[curr_index].termination_time[2] = curr_time + 1;
 
-		printf("Process %s completed in %f and ended at %f, waited for %f turnaround_time :%f.\n", process[curr_index].name, process[curr_index].burst_time, process[curr_index].termination_time[2], process[curr_index].waiting_time[2], process[curr_index].turnaround_time[2]);
+		printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[curr_index].name, process[curr_index].burst_time, process[curr_index].termination_time[2], process[curr_index].waiting_time[2]);
 	}
 }
 #endif /* _HEADER_SRTF_H */
