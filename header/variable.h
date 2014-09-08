@@ -8,6 +8,7 @@
 * Process Decriptor.
 * name - process name [i.e. P1] max 50 characters.
 * 0 - FCFS, 1 - SJF_NON_PREEMPTIVE, 2 - SJF_PREEMPTIVE, 3 - PRIORITY, 4 - RR.
+* New, Ready, Running, Waiting, Terminated.
 */
 struct incoming_process{
 	char name[50];
@@ -61,4 +62,6 @@ typedef struct _data_ data_sjf_non_preemptive;
 
 /*Same for priority datas*/
 typedef data_sjf_non_preemptive data_priority_non_preemptive;
+/* Fcfs */
+typedef data_sjf_non_preemptive data_fcfs;
 #endif /* _HEADER_VARIABLE_H */

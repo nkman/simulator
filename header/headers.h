@@ -9,4 +9,8 @@
 #include "variable.h"
 #include "function.h"
 
+#include "fcfs.h"
+#include "priority.h"
+#include "sjf.h"
+
 #endif /* _HEADER_HEADERS_H */
