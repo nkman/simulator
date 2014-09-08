@@ -6,5 +6,6 @@ int main(){
 	SJF();
 	priority_scheduling();
 	rr();
+	srtf();
 	return 0;
 }
