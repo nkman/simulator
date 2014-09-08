@@ -26,6 +26,7 @@ struct incoming_process{
 	float termination_time[5];
 	float waiting_time[5];
 	float turnaround_time[5];
+	float remaining_time;
 };
 typedef struct incoming_process Process;
 
@@ -71,4 +72,8 @@ typedef struct _data_ data_sjf_non_preemptive;
 typedef data_sjf_non_preemptive data_priority_non_preemptive;
 /* Fcfs */
 typedef data_sjf_non_preemptive data_fcfs;
+
+/*Quantum*/
+static int quantum = 2;
+
 #endif /* _HEADER_VARIABLE_H */

@@ -71,10 +71,11 @@ void *sjf_non_parts(void *data){
 	int smallest;
 	float curr_time, elapsed_time = 0.0, waiting_time = 0.0, turnaround_time = 0.0;
 
-	process[smallest].state[1] = 2;
+	
 	smallest = (*_data).smallest;
 	curr_time = (*_data).curr_time;
 
+	process[smallest].state[1] = 2;
 	if(curr_time - process[smallest].arrival_time > 0){
 		process[smallest].waiting_time[1] = curr_time - process[smallest].arrival_time;
 		waiting_time += process[smallest].waiting_time[1];

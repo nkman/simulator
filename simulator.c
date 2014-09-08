@@ -5,5 +5,6 @@ int main(){
 	FCFS();
 	SJF();
 	priority_scheduling();
+	rr();
 	return 0;
 }
