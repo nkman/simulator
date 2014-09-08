@@ -159,8 +159,8 @@ void priority_scheduling(){
 	}
 
 	for(j=0;j<total_process;j++){
-		waiting_time += process[j].waiting_time[1];
-		turnaround_time += process[j].termination_time[1] - process[j].arrival_time;
+		waiting_time += process[j].waiting_time[3];
+		turnaround_time += process[j].termination_time[3] - process[j].arrival_time;
 	}
 
 	waiting_time /= total_process;
@@ -201,14 +201,14 @@ void *priority_scheduling_func(void *data){
 	curr_time = (*_data).curr_time;
 
 	if(curr_time - process[smallest].arrival_time > 0){
-		process[smallest].waiting_time[1] = curr_time - process[smallest].arrival_time;
-		waiting_time += process[smallest].waiting_time[1];
+		process[smallest].waiting_time[3] = curr_time - process[smallest].arrival_time;
+		waiting_time += process[smallest].waiting_time[3];
 	}
 	curr_time += process[smallest].burst_time;
 	turnaround_time += curr_time - process[smallest].arrival_time;
-	process[smallest].termination_time[1] = curr_time;
-	process[smallest].is_completed[1] = 1;
-	printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[1], process[smallest].waiting_time[1]);
+	process[smallest].termination_time[3] = curr_time;
+	process[smallest].is_completed[3] = 1;
+	printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[3], process[smallest].waiting_time[3]);
 }
 
 /*
