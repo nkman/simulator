@@ -63,7 +63,7 @@ void SJF(){
 
 	waiting_time /= total_process;
 	turnaround_time /= total_process;
-	printf("Avg turnaround_time is %f and avg waiting_time is %f\n\n\n", turnaround_time, waiting_time);
+	printf("\nAvg turnaround_time is %f and avg waiting_time is %f\n\n", turnaround_time, waiting_time);
 }
 
 void *sjf_non_parts(void *data){
@@ -84,7 +84,8 @@ void *sjf_non_parts(void *data){
 	turnaround_time += curr_time - process[smallest].arrival_time;
 	process[smallest].termination_time[1] = curr_time;
 	process[smallest].is_completed[1] = 1;
-	printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[1], process[smallest].waiting_time[1]);
+	// printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[1], process[smallest].waiting_time[1]);
+	printf("Process %s Turnaround time is %f, Waiting time is %f \nTerminated at %f\n",  process[smallest].name, process[smallest].turnaround_time[1], process[smallest].waiting_time[1], process[smallest].termination_time[1]);
 	process[smallest].state[1] = 4;
 }
 

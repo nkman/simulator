@@ -47,7 +47,7 @@ void srtf(){
 
 	waiting_time /= total_process;
 	turnaround_time /= total_process;
-	printf("Avg turnaround_time is %f and avg waiting_time is %f\n\n\n", turnaround_time, waiting_time);
+	printf("\nAvg turnaround_time is %f and avg waiting_time is %f\n\n", turnaround_time, waiting_time);
 }
 
 int srtf_shortest(float curr_time){
@@ -85,7 +85,8 @@ void *srtf_thread(void *data){
 		process[curr_index].waiting_time[2] = process[curr_index].turnaround_time[2] - process[curr_index].burst_time;
 		process[curr_index].termination_time[2] = curr_time + 1;
 
-		printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[curr_index].name, process[curr_index].burst_time, process[curr_index].termination_time[2], process[curr_index].waiting_time[2]);
+		// printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[curr_index].name, process[curr_index].burst_time, process[curr_index].termination_time[2], process[curr_index].waiting_time[2]);
+		printf("Process %s Turnaround time is %f, Waiting time is %f \nTerminated at %f\n",  process[curr_index].name, process[curr_index].turnaround_time[2], process[curr_index].waiting_time[2], process[curr_index].termination_time[2]);
 	}
 }
 #endif /* _HEADER_SRTF_H */

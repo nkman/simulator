@@ -7,6 +7,7 @@
 void get_detail_from_file(void);
 void split(char *, char);
 static void print_process(void);
+void re_initialize(void);
 
 /*
 * Read from file.
@@ -62,6 +63,19 @@ static void print_process(){
 	int i;
 	for(i=0;i<total_process;i++){
 		printf("%f\t%f\t%d\n", process[i].arrival_time, process[i].burst_time, process[i].priority);
+	}
+}
+
+void re_initialize(){
+	int i;
+	for(i=0;i<total_process;i++){
+
+		memset(process[i].state, 0, sizeof(process[i].state));
+		memset(process[i].is_completed, 0, sizeof(process[i].is_completed));
+		memset(process[i].termination_time, 0, sizeof(process[i].termination_time));
+		memset(process[i].waiting_time, 0, sizeof(process[i].waiting_time));
+		memset(process[i].turnaround_time, 0, sizeof(process[i].turnaround_time));
+		process[i].remaining_time = 0;
 	}
 }
 
