@@ -107,6 +107,7 @@ void *priority_scheduling_func(void *data){
 	turnaround_time += curr_time - process[smallest].arrival_time;
 	process[smallest].termination_time[3] = curr_time;
 	process[smallest].is_completed[3] = 1;
+	process[smallest].turnaround_time[3] = curr_time - process[smallest].arrival_time;
 	// printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[smallest].name, process[smallest].burst_time, process[smallest].termination_time[3], process[smallest].waiting_time[3]);
 	printf("Process %s Turnaround time is %f, Waiting time is %f \nTerminated at %f\n",  process[smallest].name, process[smallest].turnaround_time[3], process[smallest].waiting_time[3], process[smallest].termination_time[3]);
 	process[smallest].state[3] = 4;

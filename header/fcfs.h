@@ -71,6 +71,9 @@ void *fcfs_thread(void *data){
 	process[i].is_completed[0] = 1;
 
 	process[i].termination_time[0] = curr_time;
+	
+	// printf("%d\n",curr_time);
+	process[i].turnaround_time[0]=curr_time-process[i].arrival_time;
 	// printf("Process %s completed in %f and ended at %f, waited for %f.\n", process[i].name, process[i].burst_time, process[i].termination_time[0], process[i].waiting_time[0]);
 	printf("Process %s Turnaround time is %f, Waiting time is %f \nTerminated at %f\n",  process[i].name, process[i].turnaround_time[0], process[i].waiting_time[0], process[i].termination_time[0]);
 	/*terminated*/

@@ -14,6 +14,7 @@ int main(){
 		printf("MENU\n1 FOR FCFS\n2 FOR SJF\n3 FOR PRIOROTY\n4 FOR ROUND ROBIN\n5 FOR SRTF\n6 EXIT\n\n");
 		scanf("%d", &i);
 		re_initialize();
+		
 	switch(i){
 		case 1:
 			FCFS();

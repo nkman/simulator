@@ -1,0 +1,4 @@
+#Process	Arrival Time	Burst Time	prioroty
+P1	0	24	1
+P2	0	3	2
+P3	0	3	3
